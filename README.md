@@ -158,13 +158,31 @@ npm intall mockjs
 
 ```
 - 配置
-
+|-- mock
+|   |-- app.js // 入口文件，配置路由，中间件，服务等
+|   |-- package.json // 配置启动脚本
+|   |-- routes // 路由
+|   |-- services // 路由
+|   `-- upload // 用来接收上传文件目录
 
 ##### 4、联动起前端和后端服务concurrently
 ```
 npm install concurrently
+// package.json 配置脚本命令
+"scripts": {
+    "serve": "vue-cli-service serve",
+    "build": "vue-cli-service build",
+    "lint": "vue-cli-service lint",
+    "mock": "npm run mock --prefix mock",
+    "dev": "concurrently -r \"npm run serve\" \"npm run mock\""
+  },
 ```
-#### 5、Eslint 相关配置
+##### 5、国际化
+```
+npm install vue-i18n
+```
+
+#### 6、Eslint 相关配置
 ```
 // .eslintrc.js 代码规范检查
 rules: {

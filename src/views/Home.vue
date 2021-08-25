@@ -1,5 +1,7 @@
 <template>
     <div>
+        <span>{{ $t('tip') }}</span>
+        <a-button size="small" @click="changeLang">{{ currentLang }}</a-button>
         <a-row class="mt10">
             <a-col :span="2">
                 <a-button type="primary" @click="getInfo">GET </a-button>
@@ -106,6 +108,10 @@
 
 <script>
 import { getInfo, getParam, getUrlParam, postData, upload } from '@/api/api'
+const langMap = {
+    'zh-CN': '中文',
+    'en-US': 'English'
+}
 export default {
     name: '',
     components: {},
@@ -118,6 +124,7 @@ export default {
             posts: '',
             file: '',
             name: '',
+            currentLang: '中文'
         }
     },
     computed: {},
@@ -125,6 +132,11 @@ export default {
     created() {},
     mounted() {},
     methods: {
+        changeLang () {
+            const lang = this.$i18n.locale ==='zh-CN' ? 'en-US' : 'zh-CN'
+            this.$i18n.locale = lang
+            this.currentLang = langMap[lang]
+        },
         handleRemove() {
             this.name = undefined
         },

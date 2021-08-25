@@ -19,7 +19,7 @@ app.use(express.json())
 app.use(fileUpload())
 
 // app.use(express.static('./services'))
-app.use('/', indexRoute)
+app.use('/', indexRoute) // 配置路由
 module.exports.app = app
 
 app.all('*', (req, res, next) => {
