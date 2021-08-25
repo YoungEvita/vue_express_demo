@@ -1,8 +1,13 @@
 const path = require('path')
+const CompressionWebpackPlugin = require('compression-webpack-plugin')
+const isProd = process.env.NODE_ENV === 'production'
 
-module.exports = {
+const vueConfig = {
     chainWebpack: config => {
         config.resolve.alias.set('@$',path.join(__dirname, 'src'))
+    },
+    configureWebpack: {
+        plugins: []
     },
     css: {
         loaderOptions: {
@@ -22,5 +27,20 @@ module.exports = {
                 changeOrigin: true
             }
         }
-    }
+    },
+    productionSourceMap: false
+    
 }
+
+if (isProd) {
+    vueConfig.configureWebpack.plugins.push(
+        new CompressionWebpackPlugin({
+            test: /\.(js|css|json|txt|html|svg)(\?.*)?$/i,
+            deleteOriginalAssets: true,
+            algorithm: 'gzip',
+            minRatio: 2
+        })
+    )
+}
+
+module.exports = vueConfig
