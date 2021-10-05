@@ -157,8 +157,8 @@ npm install express
 npm intall mockjs
 
 ```
-ß
 - 配置
+
 ```
 |-- mock
 |   |-- app.js // 入口文件，配置路由，中间件，服务等
@@ -166,6 +166,7 @@ npm intall mockjs
 |   |-- routes // 路由
 |   |-- services // 路由
 |   `-- upload // 用来接收上传文件目录
+
 ```
 
 ##### 4、联动起前端和后端服务concurrently
